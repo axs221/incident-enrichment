@@ -4,9 +4,12 @@ import parcelService from "./parcel";
 import weatherService from "./weather";
 
 const addWeatherData = async incident => {
-  const weather = await weatherService.get();
-
-  console.warn("ZZZZ incidentFetcher.js", "weather", weather);
+  // TODO: Don't add weather data until it is needed, when clicking map marker
+  const weather = await weatherService.get({
+    latitude: incident.address.latitude,
+    longitude: incident.address.longitude,
+    timestamp: incident.description.event_opened,
+  });
 
   return {
     ...incident,

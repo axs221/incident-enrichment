@@ -4,7 +4,9 @@ const DarkSkyApi = require("forecast.io");
 const Config = require("./config");
 
 class DarkSky {
-  fetch() {
+  fetchHistorical({latitude, longitude, timestamp}) {
+    const unixTime = Math.round(new Date(timestamp).getTime() / 1000);
+
     return new Promise(resolve => {
       const config = new Config();
 
@@ -27,27 +29,16 @@ class DarkSky {
         APIKey: darkSkySecretAccessKey,
       });
 
-      // TODO - actual incident location
-      geocode("Westfield, IN", function(err, response) {
-        const results =
-          response.json.results &&
-          response.json.results.length > 0 &&
-          response.json.results[0];
+      const options = {
+        exclude: "minutely,hourly,daily,flags,alerts",
+      };
 
-        if (!results || !results.geometry) {
-          resolve({});
-          return;
-        }
-        const latitude = results.geometry.location.lat;
-        const longitude = results.geometry.location.lng;
-        const options = {
-          exclude: "minutely,flags,alerts",
-          extend: "hourly",
-        };
-
-        darksky.get(latitude, longitude, options, function(err, res, data) {
-          resolve(data);
-        });
+      darksky.getAtTime(latitude, longitude, unixTime, options, function(
+        err,
+        res,
+        data,
+      ) {
+        resolve(data);
       });
     });
   }
