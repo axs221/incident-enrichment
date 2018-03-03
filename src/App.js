@@ -1,6 +1,10 @@
 import React, {Component} from "react";
 import "./App.css";
 
+import capitalize from "lodash/capitalize";
+import startCase from "lodash/startCase";
+import toLower from "lodash/toLower";
+
 import Map from "./components/Map";
 
 import Container from "./components/styled/container";
@@ -30,7 +34,7 @@ const Weather = props => {
         <Value>{summary}</Value>
 
         <Key>Cloud Cover</Key>
-        <Value>{cloudCover}</Value>
+        <Value>{cloudCover * 100}%</Value>
       </KeyValuePairs>
     </Container>
   );
@@ -38,8 +42,9 @@ const Weather = props => {
 
 const Comments = props => {
   return (
-    <Container>
-      <Key>Comments</Key>
+    <Container fullWidth>
+      <Header>Comments</Header>
+
       <Value>{props.data.description.comments}</Value>
     </Container>
   );
@@ -61,17 +66,29 @@ const formatDate = date => moment(date).format("MM/DD/YYYY HH:SS z");
 
 const Summary = props => {
   const {address_line1, city, state, postal_code} = props.data.address;
-  const {comments, event_opened, event_closed} = props.data.description;
+  const {type, subtype, event_opened, event_closed} = props.data.description;
 
   return (
     <Container>
       <Header>Incident</Header>
 
       <KeyValuePairs>
+        <Key>Type</Key>
+        <Value>{capitalize(type)}</Value>
+
+        <Key>Subtype</Key>
+        <Value>{capitalize(subtype)}</Value>
+
         <Key>Address</Key>
-        <Value>{`${address_line1}${comma(city)}${comma(state)}${space(
-          postal_code,
-        )}`}</Value>
+        <Value>
+          {startCase(
+            toLower(
+              `${address_line1}${comma(city)}${comma(state)}${space(
+                postal_code,
+              )}`,
+            ),
+          )}
+        </Value>
 
         <Key>Opened</Key>
         <Value>{formatDate(event_opened)}</Value>
@@ -126,8 +143,9 @@ class App extends Component {
             <FlexRow>
               <Summary data={activeIncident} />
               <Weather data={activeIncident.weather} />
-              <Comments data={activeIncident} />
             </FlexRow>
+
+            <Comments data={activeIncident} />
           </div>
         )}
       </PageContainer>

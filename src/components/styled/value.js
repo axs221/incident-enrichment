@@ -1,7 +1,8 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 
 export default styled.span`
   grid-column: 2 / 24;
+  text-overflow: ellipsis;
 
   color: #777;
 `;
