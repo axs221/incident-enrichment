@@ -9,8 +9,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div>Add JSON data here:</div>
-        <div>{JSON.stringify(this.props.incidentFetcher.incidents)}</div>
+        <div>Length of JSON data:</div>
+        <div>{this.props.incidentFetcher.incidents.length}</div>
+
+        <div>Config:</div>
+        <div>{JSON.stringify(this.props.config.get("testing"))}</div>
       </div>
     );
   }
