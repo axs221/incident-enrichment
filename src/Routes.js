@@ -4,12 +4,9 @@ import {Route, Router} from "react-router-dom";
 import App from "./App";
 import history from "./history";
 
-import IncidentFetcher from "./services/incidentFetcher";
-import Config from "./services/config";
-
-const incidentFetcher = new IncidentFetcher();
-// TODO: Is config needed here, or just other services?
-const config = new Config();
+import config from "./services/config";
+import incidentFetcher from "./services/incidentFetcher";
+import weatherService from "./services/weather";
 
 export default () => {
   return (
@@ -18,7 +15,12 @@ export default () => {
         <Route
           path="/"
           render={props => (
-            <App config={config} incidentFetcher={incidentFetcher} {...props} />
+            <App
+              config={config}
+              weatherService={weatherService}
+              incidentFetcher={incidentFetcher}
+              {...props}
+            />
           )}
         />
       </div>

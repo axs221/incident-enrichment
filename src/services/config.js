@@ -2,10 +2,10 @@ import get from "lodash/get";
 
 import configFile from "../config/config.json";
 
-class config {
+class Config {
   get(key) {
     return get(configFile, key);
   }
 }
 
-export default config;
+export default new Config();
