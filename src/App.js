@@ -4,6 +4,7 @@ import "./App.css";
 import Map from "./components/Map";
 
 import Container from "./components/styled/container";
+import FlexRow from "./components/styled/flex-row";
 import Header from "./components/styled/header";
 import KeyValuePair from "./components/styled/key-value-pair";
 import Key from "./components/styled/key";
@@ -13,11 +14,6 @@ import Value from "./components/styled/value";
 
 // TODO - break out into another file
 const Weather = props => {
-  if (!props.data) {
-    console.warn("ZZZZ App.js", "weather props", props);
-    return null;
-  }
-
   return (
     <Container>
       <Header>Weather</Header>
@@ -30,6 +26,34 @@ const Weather = props => {
       <KeyValuePair>
         <Key>Temperature</Key>
         <Value>{props.data.currently.temperature}</Value>
+      </KeyValuePair>
+    </Container>
+  );
+};
+
+const prefix = (prefixWith, text) => {
+  if (!text) {
+    return "";
+  }
+
+  return `${prefixWith}${text}`;
+};
+
+const comma = text => prefix(", ", text);
+const space = text => prefix(" ", text);
+
+const Address = props => {
+  console.warn("ZZZZ App.js", "props", props);
+  const {address_line1, city, state, postal_code} = props.data;
+  return (
+    <Container>
+      <Header>Address</Header>
+
+      <KeyValuePair>
+        <Key>Address</Key>
+        <Value>{`${address_line1}${comma(city)}${comma(state)}${space(
+          postal_code,
+        )}`}</Value>
       </KeyValuePair>
     </Container>
   );
@@ -48,7 +72,6 @@ class App extends Component {
 
   getIncidents = async () => {
     const incidents = await this.props.incidentFetcher.get();
-    console.warn("ZZZZ App.js", "incidents", incidents);
     this.setState({
       incidents,
       activeIncident: incidents[0],
@@ -75,9 +98,10 @@ class App extends Component {
 
         <Map markers={incidents} onMarkerClick={this.handleMarkerClick} />
         {activeIncident && (
-          <div>
+          <FlexRow>
+            <Address data={activeIncident.address} />
             <Weather data={activeIncident.weather} />
-          </div>
+          </FlexRow>
         )}
       </PageContainer>
     );

@@ -1,5 +1,5 @@
 import styled from "styled-components";
 
 export default styled.span`
-  color: #555;
+  color: #777;
 `;
