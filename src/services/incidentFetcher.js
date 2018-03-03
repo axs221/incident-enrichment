@@ -17,7 +17,10 @@ const addWeatherData = async incident => {
 // TODO - make less redundant fetchers
 // TODO - run in parallel with weather data
 const addParcelData = async incident => {
-  const parcel = await parcelService.get();
+  const parcel = await parcelService.get(
+    incident.address.latitude,
+    incident.address.longitude,
+  );
 
   console.warn("ZZZZ incidentFetcher.js", "incident", incident);
   console.warn("ZZZZ incidentFetcher.js", "parcel", parcel);
