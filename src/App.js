@@ -62,11 +62,19 @@ const comma = text => prefix(", ", text);
 const space = text => prefix(" ", text);
 
 // TODO - move to utils folder
-const formatDate = date => moment(date).format("MM/DD/YYYY HH:SS z");
+const formatDate = date => moment(date).format("MM/DD/YY h:mm:ss a");
 
 const Summary = props => {
   const {address_line1, city, state, postal_code} = props.data.address;
-  const {type, subtype, event_opened, event_closed} = props.data.description;
+  const {
+    type,
+    subtype,
+    event_opened,
+    first_unit_arrived,
+    first_unit_dispatched,
+    first_unit_enroute,
+    event_closed,
+  } = props.data.description;
 
   return (
     <Container>
@@ -92,6 +100,15 @@ const Summary = props => {
 
         <Key>Opened</Key>
         <Value>{formatDate(event_opened)}</Value>
+
+        <Key>First Unit Dispatched</Key>
+        <Value>{formatDate(first_unit_dispatched)}</Value>
+
+        <Key>First Unit Enroute</Key>
+        <Value>{formatDate(first_unit_enroute)}</Value>
+
+        <Key>First Unit Arrived</Key>
+        <Value>{formatDate(first_unit_arrived)}</Value>
 
         <Key>Closed</Key>
         <Value>{formatDate(event_closed)}</Value>
