@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import "./App.css";
 
+import Map from "./components/Map";
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -27,20 +29,24 @@ class App extends Component {
     }
 
     return (
-      <div className="App">
-        <div>Length of JSON data:</div>
-        <div>{incidents.length}</div>
-
-        <div>Config:</div>
-        <div>{JSON.stringify(this.props.config.get("testing"))}</div>
-
-        <div>Weather:</div>
-        <div>{JSON.stringify(incidents[0] && incidents[0].weather)}</div>
-
-        <div>Parcel:</div>
-        <div>{JSON.stringify(incidents[0] && incidents[0].parcel)}</div>
-      </div>
+      <Map markers={incidents}  /> // Map with a Marker
     );
+
+    // return ( // ZZZZ
+    //   <div className="App">
+    //     <div>Length of JSON data:</div>
+    //     <div>{incidents.length}</div>
+
+    //     <div>Config:</div>
+    //     <div>{JSON.stringify(this.props.config.get("testing"))}</div>
+
+    //     <div>Weather:</div>
+    //     <div>{JSON.stringify(incidents[0] && incidents[0].weather)}</div>
+
+    //     <div>Parcel:</div>
+    //     <div>{JSON.stringify(incidents[0] && incidents[0].parcel)}</div>
+    //   </div>
+    // );
   }
 }
 
