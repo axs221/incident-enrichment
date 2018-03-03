@@ -7,7 +7,7 @@ import Container from "./components/styled-components/container";
 
 // TODO - break out into another file
 const Weather = props => {
-  return <Container />;
+  return <Container>{JSON.stringify(props.data.timezone)}</Container>;
 };
 
 class App extends Component {
@@ -18,13 +18,11 @@ class App extends Component {
   }
 
   componentWillMount() {
-    console.warn("ZZZZ App.js", "mounting");
     this.fetchIncidents();
   }
 
   fetchIncidents = async () => {
     const incidents = await this.props.incidentFetcher.fetch();
-    console.warn("ZZZZ App.js", "SETTING STATE", incidents);
     this.setState({incidents});
   };
 
@@ -38,13 +36,13 @@ class App extends Component {
     const {activeMarker, incidents} = this.state;
 
     if (!incidents) {
-      return <div>Loading...</div>;
+      // TODO: What should we show when loading?
+      return <div />;
     }
 
     return (
       <div>
-        <Map markers={incidents} onMarkerClick={this.handleMarkerClick} /> //
-        Map with a Marker
+        <Map markers={incidents} onMarkerClick={this.handleMarkerClick} />
         {activeMarker && (
           <div>
             <Weather data={activeMarker.weather} />
@@ -52,22 +50,6 @@ class App extends Component {
         )}
       </div>
     );
-
-    // return ( // ZZZZ
-    //   <div className="App">
-    //     <div>Length of JSON data:</div>
-    //     <div>{incidents.length}</div>
-
-    //     <div>Config:</div>
-    //     <div>{JSON.stringify(this.props.config.get("testing"))}</div>
-
-    //     <div>Weather:</div>
-    //     <div>{JSON.stringify(incidents[0] && incidents[0].weather)}</div>
-
-    //     <div>Parcel:</div>
-    //     <div>{JSON.stringify(incidents[0] && incidents[0].parcel)}</div>
-    //   </div>
-    // );
   }
 }
 
