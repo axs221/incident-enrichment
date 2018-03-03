@@ -15,8 +15,8 @@ class App extends Component {
 
   fetchIncidents = async () => {
     const incidents = await this.props.incidentFetcher.fetch();
-      console.warn("ZZZZ App.js", "SETTING STATE", incidents);
-      this.setState({incidents});
+    console.warn("ZZZZ App.js", "SETTING STATE", incidents);
+    this.setState({incidents});
   };
 
   render() {
@@ -36,6 +36,9 @@ class App extends Component {
 
         <div>Weather:</div>
         <div>{JSON.stringify(incidents[0] && incidents[0].weather)}</div>
+
+        <div>Parcel:</div>
+        <div>{JSON.stringify(incidents[0] && incidents[0].parcel)}</div>
       </div>
     );
   }

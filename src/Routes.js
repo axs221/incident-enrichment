@@ -6,6 +6,7 @@ import history from "./history";
 
 import config from "./services/config";
 import incidentFetcher from "./services/incidentFetcher";
+import parcelService from "./services/parcel";
 import weatherService from "./services/weather";
 
 export default () => {
@@ -17,6 +18,7 @@ export default () => {
           render={props => (
             <App
               config={config}
+              parcelService={parcelService}
               weatherService={weatherService}
               incidentFetcher={incidentFetcher}
               {...props}
