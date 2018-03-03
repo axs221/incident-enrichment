@@ -1,10 +1,8 @@
 import get from "lodash/get";
 
-import configFile from "../config.json";
+import configFile from "../config/config.json";
 
 class config {
-  incidents = [];
-
   get(key) {
     return get(configFile, key);
   }

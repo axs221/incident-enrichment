@@ -1,6 +1,7 @@
 import dataFile1 from "../data/F01705150050.json";
 import dataFile2 from "../data/F01705150090.json";
 
+// TODO - move API side
 class incidentFetcher {
   incidents = [];
 
