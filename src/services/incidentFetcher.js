@@ -1,14 +1,21 @@
-import dataFile1 from "../data/F01705150050.json";
-import dataFile2 from "../data/F01705150090.json";
+import axios from "axios";
+
+import config from "./config";
 import parcelService from "./parcel";
 import weatherService from "./weather";
 
 const addWeatherData = async incident => {
+  console.warn("ZZZZ incidentFetcher.js", "incident", incident);
   // TODO: Don't add weather data until it is needed, when clicking map marker
   const weather = await weatherService.get({
     latitude: incident.address.latitude,
     longitude: incident.address.longitude,
     timestamp: incident.description.event_opened,
+  });
+
+  console.warn("ZZZZ incidentFetcher.js with weather data", {
+    ...incident,
+    weather,
   });
 
   return {
@@ -20,6 +27,7 @@ const addWeatherData = async incident => {
 // TODO - make less redundant fetchers
 // TODO - run in parallel with weather data
 const addParcelData = async incident => {
+  console.warn("ZZZZ incidentFetcher.js parsel", "incident", incident);
   const parcel = await parcelService.get(
     incident.address.latitude,
     incident.address.longitude,
@@ -34,18 +42,18 @@ const addParcelData = async incident => {
   };
 };
 
-// TODO - move API side
 class IncidentFetcher {
-  async fetch() {
-    const incidents = [];
-    // TODO - Make this loop through incidents? Handle multiple fetches?
-    // TODO - Promise.all
-    incidents.push(await addWeatherData(await addParcelData(dataFile1)));
-    incidents.push(await addWeatherData(await addParcelData(dataFile2)));
+  async get() {
+    const apiRoot = `http://${config.get("api.uri")}:${config.get("api.port")}`;
+    const uri = `${apiRoot}/incidents`;
 
-    console.warn("ZZZZ incidentFetcher.js", "incidents", incidents);
-
-    return incidents;
+    // TODO: error handling
+    // TODO: don't get parcel or weather data until click on marker on map.
+    const response = await axios.get(uri);
+    let data = response.data;
+    data = await Promise.all(data.map(addWeatherData));
+    data = await Promise.all(data.map(addParcelData));
+    return data;
   }
 }
 

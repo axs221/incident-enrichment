@@ -13,6 +13,11 @@ import Value from "./components/styled/value";
 
 // TODO - break out into another file
 const Weather = props => {
+  if (!props.data) {
+    console.warn("ZZZZ App.js", "weather props", props);
+    return null;
+  }
+
   return (
     <Container>
       <Header>Weather</Header>
@@ -38,11 +43,12 @@ class App extends Component {
   }
 
   componentWillMount() {
-    this.fetchIncidents();
+    this.getIncidents();
   }
 
-  fetchIncidents = async () => {
-    const incidents = await this.props.incidentFetcher.fetch();
+  getIncidents = async () => {
+    const incidents = await this.props.incidentFetcher.get();
+    console.warn("ZZZZ App.js", "incidents", incidents);
     this.setState({
       incidents,
       activeIncident: incidents[0],

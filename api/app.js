@@ -6,8 +6,9 @@ var cookieParser = require("cookie-parser");
 var bodyParser = require("body-parser");
 var cors = require("cors");
 
-var weather = require("./routes/weather");
+var incidents = require("./routes/incidents");
 var parcel = require("./routes/parcel");
+var weather = require("./routes/weather");
 
 var app = express();
 
@@ -26,8 +27,9 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/weather", weather);
+app.use("/incidents", incidents);
 app.use("/parcel", parcel);
+app.use("/weather", weather);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
