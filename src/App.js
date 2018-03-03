@@ -82,7 +82,7 @@ const Summary = props => {
 
       <KeyValuePairs>
         <Key>Type</Key>
-        <Value>{capitalize(type)}</Value>
+        <Value>{type}</Value>
 
         <Key>Subtype</Key>
         <Value>{capitalize(subtype)}</Value>
@@ -178,22 +178,25 @@ class App extends Component {
     }
 
     return (
-      <PageContainer>
+      <div>
         <PageHeader>Incident Response Map</PageHeader>
 
-        <Map markers={incidents} onMarkerClick={this.handleMarkerClick} />
-        {activeIncident && (
-          <div>
-            <FlexRow>
-              <Summary data={activeIncident} />
-              <FireDepartment data={activeIncident} />
-              <Weather data={activeIncident.weather} />
-            </FlexRow>
+        <PageContainer>
+          <Map markers={incidents} onMarkerClick={this.handleMarkerClick} />
 
-            <Comments data={activeIncident} />
-          </div>
-        )}
-      </PageContainer>
+          {activeIncident && (
+            <div>
+              <FlexRow background={"#f5f5f5"}>
+                <Summary data={activeIncident} />
+                <FireDepartment data={activeIncident} />
+                <Weather data={activeIncident.weather} />
+
+                <Comments data={activeIncident} />
+              </FlexRow>
+            </div>
+          )}
+        </PageContainer>
+      </div>
     );
   }
 }
