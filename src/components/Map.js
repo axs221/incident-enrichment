@@ -33,14 +33,14 @@ const BaseMap = compose(
 
   return (
     <GoogleMap defaultZoom={8} defaultCenter={defaultCenter}>
-      {props.markers.map(incident => {
+      {props.markers.map(marker => {
         return (
           <Marker
             position={{
-              lat: incident.address.latitude,
-              lng: incident.address.longitude,
+              lat: marker.address.latitude,
+              lng: marker.address.longitude,
             }}
-            onClick={props.onMarkerClick}
+            onClick={() => props.onMarkerClick(marker)}
           />
         );
       })}
@@ -49,33 +49,10 @@ const BaseMap = compose(
 });
 
 class Map extends React.PureComponent {
-  state = {
-    isMarkerShown: false, // ZZZZ - Remove?
-  };
-
-  componentDidMount() {
-    this.delayedShowMarker();
-  }
-
-  delayedShowMarker = () => {
-    setTimeout(() => {
-      this.setState({isMarkerShown: true});
-    }, 3000);
-  };
-
-  handleMarkerClick = () => {
-    this.setState({isMarkerShown: false});
-    this.delayedShowMarker();
-  };
-
   render() {
-    // TODO - should we do anything on click?
-    return (
-      <BaseMap
-        markers={this.props.markers}
-        onMarkerClick={this.handleMarkerClick}
-      />
-    );
+    const {markers, onMarkerClick} = this.props;
+
+    return <BaseMap markers={markers} onMarkerClick={onMarkerClick} />;
   }
 }
 

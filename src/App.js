@@ -3,11 +3,18 @@ import "./App.css";
 
 import Map from "./components/Map";
 
+import Container from "./components/styled-components/container";
+
+// TODO - break out into another file
+const Weather = props => {
+  return <Container />;
+};
+
 class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {activeMarker: null};
   }
 
   componentWillMount() {
@@ -21,15 +28,29 @@ class App extends Component {
     this.setState({incidents});
   };
 
+  handleMarkerClick = marker => {
+    this.setState({
+      activeMarker: marker,
+    });
+  };
+
   render() {
-    const {incidents} = this.state;
+    const {activeMarker, incidents} = this.state;
 
     if (!incidents) {
       return <div>Loading...</div>;
     }
 
     return (
-      <Map markers={incidents}  /> // Map with a Marker
+      <div>
+        <Map markers={incidents} onMarkerClick={this.handleMarkerClick} /> //
+        Map with a Marker
+        {activeMarker && (
+          <div>
+            <Weather data={activeMarker.weather} />
+          </div>
+        )}
+      </div>
     );
 
     // return ( // ZZZZ
