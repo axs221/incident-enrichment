@@ -5,10 +5,9 @@ var router = express.Router();
 var darkSky = require("../services/darkSky");
 
 router.get("/", (req, res, next) => {
-  // const results = darkSky.fetch();
-
-  res.send({result: "Hello, world!"});
-  // res.send({ response: darkSky.fetch });
+  darkSky.fetch().then(weather => {
+    res.send(weather);
+  });
 });
 
 module.exports = router;
