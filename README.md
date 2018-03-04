@@ -2,6 +2,12 @@ Overview
 --------
 This project provides an Incident Response Map. The project took about 8 hours and it is functional. More enrichment data could be added, and there are various TODO items in the code to improve.
 
+Screenshots
+-----------
+
+![IncidentResponse1](https://github.com/axs221/incident-enrichment/blob/master/public/IncidentResponse1.png)
+![IncidentResponse2](https://github.com/axs221/incident-enrichment/blob/master/public/IncidentResponse2.png)
+
 Future Enhancements
 -------------------
 * Don't fetch enrichment data until after a marker is clicked.
