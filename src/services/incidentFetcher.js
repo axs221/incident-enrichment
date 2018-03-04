@@ -5,17 +5,11 @@ import parcelService from "./parcel";
 import weatherService from "./weather";
 
 const addWeatherData = async incident => {
-  console.warn("ZZZZ incidentFetcher.js", "incident", incident);
   // TODO: Don't add weather data until it is needed, when clicking map marker
   const weather = await weatherService.get({
     latitude: incident.address.latitude,
     longitude: incident.address.longitude,
     timestamp: incident.description.event_opened,
-  });
-
-  console.warn("ZZZZ incidentFetcher.js with weather data", {
-    ...incident,
-    weather,
   });
 
   return {
@@ -27,14 +21,10 @@ const addWeatherData = async incident => {
 // TODO - make less redundant fetchers
 // TODO - run in parallel with weather data
 const addParcelData = async incident => {
-  console.warn("ZZZZ incidentFetcher.js parsel", "incident", incident);
   const parcel = await parcelService.get(
     incident.address.latitude,
     incident.address.longitude,
   );
-
-  console.warn("ZZZZ incidentFetcher.js", "incident", incident);
-  console.warn("ZZZZ incidentFetcher.js", "parcel", parcel);
 
   return {
     ...incident,

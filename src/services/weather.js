@@ -10,7 +10,6 @@ class Weather {
 
     // TODO: error handling
     const response = await axios.get(uriWithQuery);
-    console.warn("ZZZZ weather.js", "response", response);
     return response.data;
   }
 }
