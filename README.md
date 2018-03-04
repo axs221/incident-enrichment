@@ -10,6 +10,13 @@ Screenshots
 
 Future Enhancements
 -------------------
+* Implement SearchBox.
+* Use MarkerClusterer to group incidents when zoomed out.
+* Show vehicles (apparatus) on map for selected incident.
+* Show directions with DirectionsRenderer for vehicles to incident.
+
+TODOs and Minor Improvements
+------------
 * Don't fetch enrichment data until after a marker is clicked.
 * Set zoom level on start based on incidents available, make sure all are visible.
 * Add vehicle response information.
