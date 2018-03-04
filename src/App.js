@@ -67,13 +67,14 @@ const formatDate = date => moment(date).format("MM/DD/YY h:mm:ss a");
 const Summary = props => {
   const {address_line1, city, state, postal_code} = props.data.address;
   const {
-    type,
-    subtype,
+    event_closed,
     event_opened,
     first_unit_arrived,
     first_unit_dispatched,
     first_unit_enroute,
-    event_closed,
+    incident_number,
+    subtype,
+    type,
   } = props.data.description;
 
   return (
@@ -81,6 +82,9 @@ const Summary = props => {
       <Header>Incident</Header>
 
       <KeyValuePairs>
+        <Key>Incident Number</Key>
+        <Value>{incident_number}</Value>
+
         <Key>Type</Key>
         <Value>{type}</Value>
 
