@@ -5,7 +5,6 @@ import capitalize from "lodash/capitalize";
 import startCase from "lodash/startCase";
 import toLower from "lodash/toLower";
 
-import Container from "./styled/container";
 import Header from "./styled/header";
 import KeyValuePairs from "./styled/key-value-pairs";
 import Key from "./styled/key";
@@ -38,7 +37,7 @@ const Summary = props => {
   } = props.data.description;
 
   return (
-    <Container>
+    <div>
       <Header>{type}</Header>
 
       <KeyValuePairs>
@@ -65,7 +64,7 @@ const Summary = props => {
         <Key>Closed</Key>
         <Value>{formatDate(event_closed)}</Value>
       </KeyValuePairs>
-    </Container>
+    </div>
   );
 };
 
