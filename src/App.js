@@ -12,7 +12,10 @@ import PageContainer from "./components/styled/page-container";
 import PageHeader from "./components/styled/page-header";
 
 import Comments from "./components/Comments";
+import Demographics from "./components/Demographics";
 import FireDepartment from "./components/FireDepartment";
+import Households from "./components/Households";
+import Parcel from "./components/Parcel";
 import Summary from "./components/Summary";
 import Weather from "./components/Weather";
 
@@ -61,6 +64,9 @@ class App extends Component {
                 <Summary data={activeIncident} />
                 <FireDepartment data={activeIncident} />
                 <Weather data={activeIncident.weather} />
+                <Parcel data={activeIncident.parcel} />
+                <Demographics data={activeIncident.parcel} />
+                <Households data={activeIncident.parcel} />
 
                 <Comments data={activeIncident} />
               </FlexRow>

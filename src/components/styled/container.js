@@ -15,4 +15,18 @@ export default styled.div`
     css`
       width: 96%;
     `};
+
+  ${props =>
+    props.raised &&
+    css`
+      background: #eaeaea;
+      border-top: thin solid #dadada;
+
+      h2 {
+        color: #444;
+      }
+      span {
+        color: #444;
+      }
+    `};
 `;

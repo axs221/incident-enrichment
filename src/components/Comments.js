@@ -6,10 +6,9 @@ import KeyValuePairs from "./styled/key-value-pairs";
 import Key from "./styled/key";
 import Value from "./styled/value";
 
-
 const Comments = props => {
   return (
-    <Container fullWidth>
+    <Container fullWidth raised>
       <Header>Comments</Header>
 
       <Value>{props.data.description.comments}</Value>
@@ -17,5 +16,4 @@ const Comments = props => {
   );
 };
 
-
-export default Comments
+export default Comments;
