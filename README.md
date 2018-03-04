@@ -11,6 +11,7 @@ Future Enhancements
 * Improve styling and branding.
 * Limit CORS settings.
 * Unit testing.
+* Clean up code. Fix inconsistent file naming conventions.
 * Other TODOs found in the code.
 
 Installation
