@@ -28,9 +28,6 @@ const Summary = props => {
   const {
     event_closed,
     event_opened,
-    first_unit_arrived,
-    first_unit_dispatched,
-    first_unit_enroute,
     incident_number,
     subtype,
     type,
