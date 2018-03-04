@@ -1,9 +1,7 @@
-import React, {Component} from "react";
+import React from "react";
 
 import Container from "./styled/container";
 import Header from "./styled/header";
-import KeyValuePairs from "./styled/key-value-pairs";
-import Key from "./styled/key";
 import Value from "./styled/value";
 
 const Comments = props => {

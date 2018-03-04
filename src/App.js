@@ -3,11 +3,7 @@ import "./App.css";
 
 import Map from "./components/Map";
 
-import Container from "./components/styled/container";
 import FlexRow from "./components/styled/flex-row";
-import Header from "./components/styled/header";
-import KeyValuePairs from "./components/styled/key-value-pairs";
-import Key from "./components/styled/key";
 import PageContainer from "./components/styled/page-container";
 import PageHeader from "./components/styled/page-header";
 
