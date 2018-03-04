@@ -11,6 +11,7 @@ Screenshots
 Future Enhancements
 -------------------
 * Don't fetch enrichment data until after a marker is clicked.
+* Change color of markers when selected.
 * Add vehicle response information.
 * Add more weather information and weather icons.
 * Handle bad data and large datasets.
