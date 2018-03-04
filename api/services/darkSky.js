@@ -1,4 +1,3 @@
-const googleMaps = require("@google/maps");
 const DarkSkyApi = require("forecast.io");
 
 const Config = require("./config");
@@ -11,19 +10,6 @@ class DarkSky {
       const config = new Config();
 
       const darkSkySecretAccessKey = config.get("darkSkySecretAccessKey");
-      const googleMapsSecretAccessKey = config.get("googleMapsSecretAccessKey");
-
-      const googleMapsClient = googleMaps.createClient({
-        key: googleMapsSecretAccessKey,
-      });
-
-      const geocode = function(address, cb) {
-        const query = {
-          address,
-        };
-
-        googleMapsClient.geocode(query, cb);
-      };
 
       const darksky = new DarkSkyApi({
         APIKey: darkSkySecretAccessKey,
