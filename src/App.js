@@ -52,7 +52,7 @@ class App extends Component {
         <PageHeader>Incident Response Map</PageHeader>
 
         <PageContainer>
-          <Map markers={incidents} onMarkerClick={this.handleMarkerClick} />
+          <Map markers={incidents} activeMarker={activeIncident} onMarkerClick={this.handleMarkerClick} />
 
           {activeIncident && (
             <div>

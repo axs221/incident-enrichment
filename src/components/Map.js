@@ -32,7 +32,7 @@ const BaseMap = compose(
       : centerOfUsa;
 
   return (
-    <GoogleMap defaultZoom={8} defaultCenter={defaultCenter}>
+    <GoogleMap defaultZoom={10} defaultCenter={defaultCenter}>
       {props.markers.map(marker => {
         return (
           <Marker
@@ -40,6 +40,7 @@ const BaseMap = compose(
               lat: marker.address.latitude,
               lng: marker.address.longitude,
             }}
+            opacity={marker === props.activeMarker ? 1.0 : 0.6}
             onClick={() => props.onMarkerClick(marker)}
           />
         );
@@ -50,9 +51,9 @@ const BaseMap = compose(
 
 class Map extends React.PureComponent {
   render() {
-    const {markers, onMarkerClick} = this.props;
+    const {activeMarker, markers, onMarkerClick} = this.props;
 
-    return <BaseMap markers={markers} onMarkerClick={onMarkerClick} />;
+    return <BaseMap markers={markers} activeMarker={activeMarker} onMarkerClick={onMarkerClick} />;
   }
 }
 
