@@ -11,12 +11,14 @@ Screenshots
 Future Enhancements
 -------------------
 * Don't fetch enrichment data until after a marker is clicked.
-* Change color of markers when selected.
+* Set zoom level on start based on incidents available, make sure all are visible.
 * Add vehicle response information.
 * Add more weather information and weather icons.
+* Use MarkerWithLabel or other overlays to put most important information on map.
 * Handle bad data and large datasets.
 * Improve styling and branding.
 * Limit CORS settings.
+* Filtering.
 * Unit testing.
 * Clean up code. Fix inconsistent file naming conventions.
 * Other TODOs found in the code.
