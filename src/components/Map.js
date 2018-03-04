@@ -7,11 +7,8 @@ import {
   GoogleMap,
   Marker,
 } from "react-google-maps";
-import moment from "moment";
 
 import Tooltip from "./Tooltip";
-
-const formatDate = date => moment(date).format("MM/DD/YY h:mm:ss a");
 
 const centerOfUsa = {
   lat: 39.8283,
